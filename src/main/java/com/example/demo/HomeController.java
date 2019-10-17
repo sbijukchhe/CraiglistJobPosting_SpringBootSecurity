@@ -3,57 +3,79 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class HomeController {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    UserRepository userRepository;
+    JobRepository jobRepository;
 
     @RequestMapping("/")
-    public String index() {
-        return "index";
+    public String jobList(Model model){
+        model.addAttribute("jobs", jobRepository.findAll());
+        return "joblist";
     }
 
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
+    @RequestMapping("/add")
+    public String addJob(Model model){
+        model.addAttribute("job", new Job());
+        return "jobform";
     }
 
-    @RequestMapping("/secure")
-    public String secure(Principal principal, Model model) {
-        String username = principal.getName();
-        model.addAttribute("user", userRepository.findByUsername(username));
-        return "secure";
-    }
-
-    @GetMapping("/register")
-    public String showRegistrationPage(Model model){
-        model.addAttribute("user", new User());
-        return "registration";
-    }
-
-    @PostMapping("/register")
-    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
-        model.addAttribute("user", user);
-        if (result.hasErrors()){
-            return "registration";
+    @PostMapping("/processjob")
+    public String processForm(@ModelAttribute Job job, @RequestParam(name = "date") String date){
+        String pattern = "yyyy-MM-dd'T'hh:mm";
+        try{
+            String formattedDate = date.substring(1,date.length()-1);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            Date realDate = simpleDateFormat.parse(formattedDate);
+            job.setDate(realDate);
         }
-        else{
-            userService.saveUser(user);
-            model.addAttribute("message", "User Account Created");
+        catch(java.text.ParseException e){
+            e.printStackTrace();
         }
-        return "index";
+        jobRepository.save(job);
+        return "redirect:/";
+    }
+
+    @PostMapping("/processsearch")
+    public String searchResult(Model model, @RequestParam(name = "search") String search,
+                               @RequestParam(name = "category") String category){
+
+        if (category.equals("1")){
+            model.addAttribute("jobs", jobRepository.findByTitleContainingIgnoreCase(search));
+        }
+        else if(category.equals("2")){
+            model.addAttribute("jobs", jobRepository.findByAuthorContainingIgnoreCase(search));
+        }
+        else if (category.equals("3")){
+            model.addAttribute("jobs", jobRepository.findByDescriptionContainingIgnoreCase(search));
+        }
+        else if (category.equals("4")){
+            model.addAttribute("jobs", jobRepository.findByPhoneNum(search));
+        }
+        return "searchlist";
+    }
+
+    @RequestMapping("/detail/{id}")
+    public String showJob(@PathVariable("id") long id, Model model) {
+        model.addAttribute("job", jobRepository.findById(id).get());
+        return "showdetail";
+    }
+
+    @RequestMapping("/update/{id}")
+    public String updateJob(@PathVariable("id") long id, Model model) {
+        model.addAttribute("job", jobRepository.findById(id).get());
+        return "jobform";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteJob(@PathVariable("id")long id) {
+        jobRepository.deleteById(id);
+        return "redirect:/";
     }
 }

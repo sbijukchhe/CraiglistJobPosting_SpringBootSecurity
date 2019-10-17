@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https:www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-    <script type="text/javascript" src="../static/javascript/alert.js"></script>
-    <title>Secure Page</title>
+    <title>Job Detail</title>
 </head>
 <body>
 
@@ -15,19 +14,32 @@
 <div th:insert="base :: navbar"></div>
 <br>
 
-<h3>Secure Page</h3>
-<a href="/logout">logout</a>
-<h4>email</h4>
-<p th:text="${user.email}"></p><br/>
-<h4>last name</h4>
-<p th:text="${user.lastName}"></p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-primary" role="alert">
+                <h2>Job Details</h2>
+            </div>
 
+            <a href="/">Show All Jobs</a><br>
+
+            Title: <span th:text="${job.title}"></span><br>
+            Description: <span th:text="${job.description}"></span><br>
+            Posted Date: <span th:text="${#dates.format(job.date, 'MM-dd-yyyy')}"></span><br>
+            Author: <span th:text="${job.author}"></span><br>
+            Phone: <span th:text="${job.phoneNum}"></span><br>
+
+            <a th:href="@{/delete/{id}(id=${job.id})}">Delete this job</a>
+
+        </div>
+    </div>
+</div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <!--Footer-->
 <div th:insert="base :: footer"></div>
-</body>
 
+</body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

@@ -6,26 +6,40 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-    <script type="text/javascript" src="../static/javascript/alert.js"></script>
-    <title>Secure Page</title>
+    <title>Search Results</title>
 </head>
+
 <body>
 
 <!--Navbar-->
 <div th:insert="base :: navbar"></div>
 <br>
 
-<h3>Secure Page</h3>
-<a href="/logout">logout</a>
-<h4>email</h4>
-<p th:text="${user.email}"></p><br/>
-<h4>last name</h4>
-<p th:text="${user.lastName}"></p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="alert alert-primary" role="alert">
+                <h2>Search Results</h2>
+            </div>
 
 
+            <div th:each="job : ${jobs}">
+                Title: <span th:text="${job.title}"></span><br>
+                Description: <span th:text="${job.description}"> </span><br>
+                Posted Date: <span th:text="${#dates.format(job.date, 'MM-dd-yyyy')}"></span><br>
+                Author: <span th:text="${job.author}"></span><br>
+                Phone: <span th:text="${job.phoneNum}"> </span><br><br>
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+</div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br>
 <!--Footer-->
 <div th:insert="base :: footer"></div>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
