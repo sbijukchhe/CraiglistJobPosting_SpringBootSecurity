@@ -3,8 +3,10 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,11 +16,27 @@ public class HomeController {
     @Autowired
     JobRepository jobRepository;
 
-    @RequestMapping("/")
+    @Autowired
+    UserService userService;
+
+    /*@RequestMapping("/")
     public String jobList(Model model){
         model.addAttribute("jobs", jobRepository.findAll());
         return "joblist";
+    }*/
+
+
+    @RequestMapping("/")
+    public String jobList(Model model){
+        model.addAttribute("jobs", jobRepository.findAll());
+        model.addAttribute("user",userService.getUser());
+        if(userService.getUser() != null) {
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
+        return "joblist";
     }
+
+
 
     @RequestMapping("/add")
     public String addJob(Model model){
@@ -76,6 +94,18 @@ public class HomeController {
     @RequestMapping("/delete/{id}")
     public String deleteJob(@PathVariable("id")long id) {
         jobRepository.deleteById(id);
+        return "redirect:/";
+    }
+
+    //ADDED
+    @PostMapping("/process")
+    public String processForm(@Valid Job job, BindingResult result){
+        if(result.hasErrors()){
+            return "jobform";
+        }
+
+        job.setUser(userService.getUser());
+        jobRepository.save(job);
         return "redirect:/";
     }
 }

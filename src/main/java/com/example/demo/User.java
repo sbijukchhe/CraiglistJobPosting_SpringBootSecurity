@@ -39,15 +39,24 @@ public class User {
     public User() {
     }
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+    /*public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
         this.setEmail(email);
         this.setPassword(password);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEnabled(enabled);
         this.setUsername(username);
-    }
+    }*/
 
+//    ADDED
+public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+    this.email = email;
+    this.setPassword(password);
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.enabled = enabled;
+    this.username = username;
+}
     public long getId() {
         return id;
     }

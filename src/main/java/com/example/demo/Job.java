@@ -18,6 +18,10 @@ public class Job {
     private String author;
     private String phoneNum;
 
+    @ManyToOne (fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Job() {
     }
 
@@ -75,6 +79,14 @@ public class Job {
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
