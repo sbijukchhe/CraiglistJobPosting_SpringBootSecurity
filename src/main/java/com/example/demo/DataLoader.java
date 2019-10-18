@@ -19,22 +19,23 @@ public class DataLoader implements CommandLineRunner {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public void run(String... strings) throws Exception{
+    public void run(String... strings) throws Exception {
 
-        if(!roleRepository.findAll().iterator().hasNext()) {
+        if (!roleRepository.findAll().iterator().hasNext()) {
             roleRepository.save(new Role("USER"));
             roleRepository.save(new Role("ADMIN"));
+
+
+            Role adminRole = roleRepository.findByRole("ADMIN");
+            Role userRole = roleRepository.findByRole("USER");
+
+            User user = new User("mark@mark.com", "password", "Mark", "Lopez", true, "mark");
+            user.setRoles(Arrays.asList(userRole));
+            userRepository.save(user);
+
+            user = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
+            user.setRoles(Arrays.asList(adminRole));
+            userRepository.save(user);
         }
-
-        Role adminRole = roleRepository.findByRole("ADMIN");
-        Role userRole = roleRepository.findByRole("USER");
-
-        User user = new User("mark@mark.com", "password", "Mark", "Lopez", true, "mark");
-        user.setRoles(Arrays.asList(userRole));
-        userRepository.save(user);
-
-        user = new User("admin@admin.com", "password", "Admin", "User", true, "admin");
-        user.setRoles(Arrays.asList(adminRole));
-        userRepository.save(user);
     }
 }

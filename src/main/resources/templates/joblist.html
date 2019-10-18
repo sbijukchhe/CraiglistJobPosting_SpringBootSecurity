@@ -46,13 +46,10 @@
                     <td>
 
                         <span th:if="${user_id == job.user.id}">
-                            <!--<a th:href="@{/update/{id}(id=${job.id})}">Update</a>
-                            <a th:href="@{/delete/{id}(id=${job.id})}">Delete</a>-->
                             <a th:href="@{/update/{id}(id=${job.id})}" type="button" class="btn btn-outline-success">Update</a>
                             <a th:href="@{/delete/{id}(id=${job.id})}" type="button" class="btn btn-outline-success">Delete</a>
                         </span>
-<!--                            <a th:href="@{/detail/{id}(id=${job.id})}">Details</a>-->
-                        <a th:href="@{/detail/{id}(id=${job.id})}" type="button" class="btn btn-outline-success">Details</a>
+                            <a th:href="@{/detail/{id}(id=${job.id})}" type="button" class="btn btn-outline-success">Details</a>
                     </td>
                 </tr>
                 </tbody>

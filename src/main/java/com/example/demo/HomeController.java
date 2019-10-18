@@ -19,13 +19,6 @@ public class HomeController {
     @Autowired
     UserService userService;
 
-    /*@RequestMapping("/")
-    public String jobList(Model model){
-        model.addAttribute("jobs", jobRepository.findAll());
-        return "joblist";
-    }*/
-
-
     @RequestMapping("/")
     public String jobList(Model model){
         model.addAttribute("jobs", jobRepository.findAll());
@@ -57,7 +50,6 @@ public class HomeController {
         catch(java.text.ParseException e){
             e.printStackTrace();
         }
-        //added**************
         job.setUser(userService.getUser());
         jobRepository.save(job);
         return "redirect:/";
@@ -111,6 +103,4 @@ public class HomeController {
         jobRepository.deleteById(id);
         return "redirect:/";
     }
-
-
 }
