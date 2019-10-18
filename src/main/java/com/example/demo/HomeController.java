@@ -52,6 +52,7 @@ public class HomeController {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
             Date realDate = simpleDateFormat.parse(formattedDate);
             job.setDate(realDate);
+//            job.setUser(userService.getUser());
         }
         catch(java.text.ParseException e){
             e.printStackTrace();
