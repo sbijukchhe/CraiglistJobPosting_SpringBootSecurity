@@ -20,14 +20,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-    <!--<nav class="navbar navbar navbar-expand-lg navbar-light bg-dark" th:fragment="main-navbar">
-        <a class="navbar-brand text-white" href="/">
-            &nbsp;FidoMissing
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>-->
 
 <!--        Search bar-->
 
@@ -48,7 +40,7 @@
 
             <ul class="nav navbar-nav ml-auto">
 
-                <!--                the Username will display if the user is authenticated (logged in) otherwise the link to login will show.-->
+                <!-- the Username will display if the user is authenticated (logged in) otherwise the link to login will show.-->
 
                 <li sec:authorize="isAuthenticated()" class="nav-link text-warning" th:inline="text">
                     Welcome [[${#authentication.name}]]!
@@ -103,31 +95,31 @@
 <div th:fragment="footer">
     <div class="alert alert" style="background-color: orangered" role="alert">
         <div class="row justify-content-rt-center">
-            <div class="col">
+            <div class="col" style="color: white">
                 &copy;2019
             </div>
             <div class="col">
                 <!--Facebook-->
-                <button type="button" class="btn btn-fb" onClick="parent.location='https://www.facebook.com/'">
-                    <i class="fab fa-facebook-f pr-1"></i> Facebook</button>
+                <button type="button" class="btn btn-fb text-white" onClick="parent.location='https://www.facebook.com/'">
+                    <i class="fab fa-facebook-f pr-1 text-white"></i> Facebook</button>
                 <!--Twitter-->
-                <button type="button" class="btn btn-tw" onClick="parent.location='https://www.twitter.com/'">
-                    <i class="fab fa-twitter pr-1" ></i> Twitter</button>
+                <button type="button" class="btn btn-tw text-white" onClick="parent.location='https://www.twitter.com/'">
+                    <i class="fab fa-twitter pr-1 text-white" ></i> Twitter</button>
                 <!--Google +-->
-                <button type="button" class="btn btn-gplus" onClick="parent.location='https://www.google.com/'">
-                    <i class="fab fa-google-plus-g pr-1"></i> Google +</button>
+                <button type="button" class="btn btn-gplus text-white" onClick="parent.location='https://www.google.com/'">
+                    <i class="fab fa-google-plus-g pr-1 text-white"></i> Google +</button>
                 <!--Linkedin-->
-                <button type="button" class="btn btn-li" onClick="parent.location='https://www.linkedin.com/'">
-                    <i class="fab fa-linkedin-in pr-1"></i> Linkedin</button>
+                <button type="button" class="btn btn-li text-white" onClick="parent.location='https://www.linkedin.com/'">
+                    <i class="fab fa-linkedin-in pr-1 text-white"></i> Linkedin</button>
                 <!--Instagram-->
-                <button type="button" class="btn btn-ins" onClick="parent.location='https://www.instagram.com/'">
-                    <i class="fab fa-instagram pr-1"></i> Instagram</button>
+                <button type="button" class="btn btn-ins text-white" onClick="parent.location='https://www.instagram.com/'">
+                    <i class="fab fa-instagram pr-1 text-white"></i> Instagram</button>
                 <!--Pinterest-->
-                <button type="button" class="btn btn-pin" onClick="parent.location='https://www.pinterest.com/'">
-                    <i class="fab fa-pinterest pr-1"></i> Pinterest</button>
+                <button type="button" class="btn btn-pin text-white" onClick="parent.location='https://www.pinterest.com/'">
+                    <i class="fab fa-pinterest pr-1 text-white"></i> Pinterest</button>
             </div>
         </div>
-        <p>Craiglist Job Information.......</p>
+        <p style="color: white">Craiglist Job Information.......</p>
     </div>
 </div>
 
