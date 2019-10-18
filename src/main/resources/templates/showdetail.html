@@ -22,6 +22,7 @@
             </div>
 
             <a href="/">Show All Jobs</a><br>
+<!--            <a th:href="/" type="button" class="btn btn-outline-success">All Posted Jobs</a><br><br>-->
 
             Title: <span th:text="${job.title}"></span><br>
             Description: <span th:text="${job.description}"></span><br>
@@ -29,7 +30,7 @@
             Author: <span th:text="${job.author}"></span><br>
             Phone: <span th:text="${job.phoneNum}"></span><br>
 
-            <a th:href="@{/delete/{id}(id=${job.id})}">Delete this job</a>
+<!--            <a th:href="@{/delete/{id}(id=${job.id})}">Delete this job</a>-->
 
         </div>
     </div>

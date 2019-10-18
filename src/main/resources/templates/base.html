@@ -42,7 +42,7 @@
 
                 <!-- the Username will display if the user is authenticated (logged in) otherwise the link to login will show.-->
 
-                <li sec:authorize="isAuthenticated()" class="nav-link text-warning" th:inline="text">
+                <li sec:authorize="isAuthenticated()" class="nav-link " style="color: yellow" th:inline="text">
                     Welcome [[${#authentication.name}]]!
                 </li>
 
