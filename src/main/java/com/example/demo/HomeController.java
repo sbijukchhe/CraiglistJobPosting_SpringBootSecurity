@@ -29,7 +29,7 @@ public class HomeController {
     @RequestMapping("/")
     public String jobList(Model model){
         model.addAttribute("jobs", jobRepository.findAll());
-        model.addAttribute("user",userService.getUser());
+//        model.addAttribute("user",userService.getUser());
         if(userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
@@ -56,9 +56,23 @@ public class HomeController {
         catch(java.text.ParseException e){
             e.printStackTrace();
         }
+        //added**************
+        job.setUser(userService.getUser());
         jobRepository.save(job);
         return "redirect:/";
     }
+
+    //ADDED
+//    @PostMapping("/process")
+//    public String processForm(@Valid Job job, BindingResult result){
+//        if(result.hasErrors()){
+//            return "jobform";
+//        }
+//
+//        job.setUser(userService.getUser());
+//        jobRepository.save(job);
+//        return "redirect:/";
+//    }
 
     @PostMapping("/processsearch")
     public String searchResult(Model model, @RequestParam(name = "search") String search,
@@ -97,15 +111,5 @@ public class HomeController {
         return "redirect:/";
     }
 
-    //ADDED
-    @PostMapping("/process")
-    public String processForm(@Valid Job job, BindingResult result){
-        if(result.hasErrors()){
-            return "jobform";
-        }
 
-        job.setUser(userService.getUser());
-        jobRepository.save(job);
-        return "redirect:/";
-    }
 }

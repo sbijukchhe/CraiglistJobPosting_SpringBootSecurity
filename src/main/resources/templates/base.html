@@ -2,23 +2,32 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">-->
     <title>Job List</title>
 </head>
 <body>
 
 <div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-info" >
+    <nav class="navbar navbar-expand-lg navbar-light"style="background-color: orangered" th:fragment="main-navbar" >
         <a class="navbar-brand text-white"  href="/">JobInfo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+    <!--<nav class="navbar navbar navbar-expand-lg navbar-light bg-dark" th:fragment="main-navbar">
+        <a class="navbar-brand text-white" href="/">
+            &nbsp;FidoMissing
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>-->
 
 <!--        Search bar-->
 
@@ -44,11 +53,13 @@
                 <li sec:authorize="isAuthenticated()" class="nav-link text-warning" th:inline="text">
                     Welcome [[${#authentication.name}]]!
                 </li>
-                <li class="nav-item">
-                    <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/register">Register</a>
-                </li>
+
                 <li class="nav-item">
                     <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/login">Login</a>
+                </li>
+
+                <li class="nav-item">
+                    <a sec:authorize="!isAuthenticated()" class="nav-link text-white" href="/register">Register</a>
                 </li>
 
 
@@ -90,7 +101,7 @@
 
 <!--Footer-->
 <div th:fragment="footer">
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert" style="background-color: orangered" role="alert">
         <div class="row justify-content-rt-center">
             <div class="col">
                 &copy;2019

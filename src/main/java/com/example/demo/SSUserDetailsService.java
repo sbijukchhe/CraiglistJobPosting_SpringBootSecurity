@@ -21,7 +21,7 @@ public class SSUserDetailsService implements UserDetailsService {
         this.userRepository=userRepository;
     }
 
-    /*@Override
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         try{
            User user = userRepository.findByUsername(username);
@@ -46,13 +46,13 @@ public class SSUserDetailsService implements UserDetailsService {
             authorities.add(grantedAuthority);
         }
         return authorities;
-    }*/
+    }
 
 
 
 //    Added
 
-    @Override
+   /* @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try{
             User appUser = userRepository.findByUsername(username);
@@ -81,5 +81,5 @@ public class SSUserDetailsService implements UserDetailsService {
 
         System.out.println("User authorities are" + authorities.toString());
         return authorities;
-    }
+    }*/
 }

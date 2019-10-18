@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col">
 
-            <div class="alert alert-primary" role="alert">
+            <div class="alert alert text-center" style="background-color: lightsalmon" role="alert">
                 <h2>All Jobs</h2>
             </div>
 
@@ -44,24 +44,13 @@
                     <td th:text="${job.author}"></td>
                     <td th:text="${job.phoneNum}"></td>
                     <td>
-                        <a th:href="@{/update/{id}(id=${job.id})}">Update</a>-
-                        <a th:href="@{/detail/{id}(id=${job.id})}">Details</a>-
-                        <a th:href="@{/delete/{id}(id=${job.id})}">Delete</a>
-                    </td>
-
-<!--                    ****Added-->
-                    <!--<td>
 
                         <span th:if="${user_id == job.user.id}">
                             <a th:href="@{/update/{id}(id=${job.id})}">Update</a>
                             <a th:href="@{/delete/{id}(id=${job.id})}">Delete</a>
                         </span>
                             <a th:href="@{/detail/{id}(id=${job.id})}">Details</a>
-
-                    </td>-->
-
-
-
+                    </td>
                 </tr>
                 </tbody>
             </table>
